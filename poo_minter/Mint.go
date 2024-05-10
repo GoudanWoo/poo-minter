@@ -3,6 +3,7 @@ package poo_minter
 import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/grand"
 	"time"
 )
 
@@ -91,9 +92,9 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 				waitShit = waitShit2
 			}
 			waitShit -= userMining.PointsInStorage
-			sleepTime := time.Duration(waitShit/userMining.MiningRate) * time.Second
-			g.Log().Infof(ctx, "继续等待 %.2f 屎 (≈ %s) 后掏屎", waitShit, sleepTime)
-			time.Sleep(sleepTime)
+			waitTime := time.Duration(waitShit/userMining.MiningRate) * time.Second
+			g.Log().Infof(ctx, "大概等待 %.2f 屎 (≈ %s) 后掏屎", waitShit, waitTime)
+			time.Sleep(min(waitTime, time.Duration(grand.N(1, 5))*time.Minute))
 			continue
 		}
 	}
