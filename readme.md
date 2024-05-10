@@ -2,6 +2,10 @@
 
 > 臭挖屎的
 
+## 下载
+
+[GitHub Actions](https://github.com/GoudanWoo/poo-minter/actions/workflows/build.yml)
+
 ## 用法
 
 ```shell
