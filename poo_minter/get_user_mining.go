@@ -13,7 +13,7 @@ type getUserMiningResponse struct {
 	MiningRate      float64 `json:"mining_rate"`       // 挖屎效率, 单位: 秒
 	PointsInStorage float64 `json:"points_in_storage"` // 马桶暂存屎量
 	SpendablePoints float64 `json:"spendable_points"`  // 可用屎量
-	CurrentLeague   uint    `json:"current_league"`    // 皮搋子段位
+	CurrentLeague   int     `json:"current_league"`    // 皮搋子段位
 }
 
 func (minter *PooMinter) getUserMining(ctx g.Ctx) (userMining getUserMiningResponse, err error) {

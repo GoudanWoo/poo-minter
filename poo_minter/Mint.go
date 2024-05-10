@@ -30,6 +30,8 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 		}
 
 		switch userMining.CurrentLeague {
+		case -1:
+			g.Log().Infof(ctx, "当前段位: %s", "没皮搋子")
 		case 0:
 			g.Log().Infof(ctx, "当前段位: %s", "木皮搋子")
 		case 1:
