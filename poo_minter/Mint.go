@@ -94,7 +94,7 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 			waitShit -= userMining.PointsInStorage
 			waitTime := time.Duration(waitShit/userMining.MiningRate) * time.Second
 			g.Log().Infof(ctx, "大概等待 %.2f 屎 (≈ %s) 后掏屎", waitShit, waitTime)
-			time.Sleep(min(waitTime, time.Duration(grand.N(1, 5))*time.Minute))
+			time.Sleep(min(waitTime, time.Duration(grand.N(30, 300))*time.Second))
 			continue
 		}
 	}
