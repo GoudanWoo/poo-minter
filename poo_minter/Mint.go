@@ -1,13 +1,16 @@
 package poo_minter
 
 import (
+	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/util/grand"
 	"time"
 )
 
 func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
+	ctx = context.WithValue(ctx, gctx.StrKey(`MiddlewareClientTracingHandled`), 1)
 	err = minter.login(ctx)
 	if err != nil {
 		err = gerror.Wrapf(err, "%s 失败", "上号")
