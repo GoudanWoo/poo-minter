@@ -1,4 +1,5 @@
-FROM alpine:3.19.0
+FROM debian:bookworm-20240423
+# debian 12.5
 
 LABEL org.opencontainers.image.authors="Goudan Woo"
 
