@@ -22,5 +22,5 @@ poo-minter --init.data "query_id=............"
 ### Docker
 
 ```shell
-docker run -e INIT_DATA=query_id=..... ghcr.io/goudanwoo/poo-minter
+docker run -e INIT_DATA=query_id=..... ghcr.io/goudanwoo/poo-minter:master
 ```
