@@ -25,6 +25,22 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 
 	g.Log().Infof(ctx, "你好, %s(%s)", user.Username, user.Id)
 
+	userTasks, err := minter.getUserTasks(ctx)
+	if err != nil {
+		err = gerror.Wrapf(err, "%s 失败", "获取用户任务")
+		return
+	}
+
+	if !userTasks.Status.ActionJoinTwitter {
+		g.Log().Infof(ctx, "准备提交 %s 任务", "推特")
+		err = minter.task(ctx, "twitter")
+		if err != nil {
+			err = gerror.Wrapf(err, "%s 失败", "提交任务")
+			return
+		}
+		g.Log().Infof(ctx, "提交 %s 任务成功", "推特")
+	}
+
 	for {
 		userMining, err := minter.getUserMining(ctx)
 		if err != nil {
