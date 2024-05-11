@@ -66,6 +66,10 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 			g.Log().Infof(ctx, "%s 已到最大等级限制", "马桶")
 		}
 
+		balance := userMining.PointsInStorage + userMining.SpendablePoints
+		percentage := userMining.PointsInStorage / userMining.StorageSize
+		g.Log().Infof(ctx, "总共已有 %.2f 屎, 其中 马桶 已存 %.2f / %.0f 屎, 达到容量的 %.2f%%", balance, userMining.PointsInStorage, userMining.StorageSize, percentage*100)
+
 		if faucetUpgradable && userMining.SpendablePoints >= userUpgrades.Faucet.Cost {
 			g.Log().Infof(ctx, "准备升级 %s", "水龙头")
 			err := minter.upgrade(ctx, "faucet")
@@ -77,10 +81,6 @@ func (minter *PooMinter) Mint(ctx g.Ctx) (err error) {
 			g.Log().Infof(ctx, "升级 %s 成功", "水龙头")
 			continue
 		}
-
-		balance := userMining.PointsInStorage + userMining.SpendablePoints
-		percentage := userMining.PointsInStorage / userMining.StorageSize
-		g.Log().Infof(ctx, "总共已有 %.2f 屎, 其中 马桶 已存 %.2f / %.0f 屎, 达到容量的 %.2f%%", balance, userMining.PointsInStorage, userMining.StorageSize, percentage*100)
 
 		if faucetUpgradable && balance >= userUpgrades.Faucet.Cost || percentage >= 0.9 {
 			g.Log().Infof(ctx, "准备掏屎")
