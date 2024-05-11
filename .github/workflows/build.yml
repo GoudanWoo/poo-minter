@@ -43,7 +43,7 @@ jobs:
 
       - name: Build the Executable
         id: build
-        run: gox -osarch="darwin/amd64 darwin/arm64 linux/amd64 linux/arm linux/arm64 windows/amd64" -output="build/cross/{{.OS}}/{{.Arch}}/poo-minter" poo
+        run: gox -osarch="darwin/amd64 darwin/arm64 linux/amd64 linux/arm linux/arm64 windows/amd64" -ldflags="-X 'poo/updater.VersionStr=$(git rev-parse --short HEAD)' -X 'poo/updater.versionCode_=$(git rev-list --count HEAD)'" -output="build/cross/{{.OS}}/{{.Arch}}/poo-minter" poo
 
 
       - name: Artifact with darwin/amd64
